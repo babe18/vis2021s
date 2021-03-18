@@ -61,7 +61,7 @@
 
           A450 200 0 0 0 80 192
           A450 200 0 0 0 55 256
-          " stroke-width="10" stroke="#F00" fill="none" opacity="0.3"/>
+          " stroke-width="10" stroke="yellow" fill="none" opacity="0.3"/>
 
   <circle cx="10" cy="00" r="10" stroke="#000" stroke-width="5" fill="url(#a2)">
     <animateMotion dur="5.5s" path="M55 256 
