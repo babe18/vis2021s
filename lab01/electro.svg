@@ -46,14 +46,14 @@
   <text x="254" y="250" font-size="16" text-anchor="middle" fill="red">(256, 256)</text>
 
   <path d="M192 0 C160 80 160 60 200 64 S240 55 192 128 " stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M0 232 H114" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M280 232 H384" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M170 325 A20 25 0 1 0 215 325" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
+  <path d="M0 232 H114" stroke-width="10" stroke="blue" fill="none" opacity="0.3"></path>
+  <path d="M280 232 H384" stroke-width="10" stroke="red" fill="none" opacity="0.3"></path>
+  <path d="M170 325 A20 25 0 1 0 215 325" stroke-width="10" stroke="blue" fill="none" opacity="0.3"></path>
   <path d="M280 430 A95 150 0 0 1 384 430" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
   <path d="M381 430 A95 165 -10 0 0 443 390" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M440 355 A20 20 0 1 0 470 375z" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M455 360 L460 345" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
-  <path d="M460 370 L470 350" stroke-width="10" stroke="yellow" fill="none" opacity="0.3"></path>
+  <path d="M440 355 A20 20 0 1 0 470 375z" stroke-width="10" stroke="blue" fill="none" opacity="0.3"></path>
+  <path d="M455 360 L460 345" stroke-width="10" stroke="blue" fill="none" opacity="0.3"></path>
+  <path d="M460 370 L470 350" stroke-width="10" stroke="blue" fill="none" opacity="0.3"></path>
 
 
   <path d="M0 128 L384 128 L384 384 L240 384
@@ -61,7 +61,7 @@
            A22 100 0 0 1 230 490
            L160 490
            A22 100 0 0 1 130 460
-           A22 100 43 0 1 144 384
+           A22 100 40 0 1 144 384
            L0 384  L0 128"
            stroke-width="10" stroke="yellow" fill="none" opacity="0.3"/>
 
