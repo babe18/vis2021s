@@ -1,14 +1,174 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>D3 Page Template</title>
-    <script src="http://d3js.org/d3.v6.min.js" charset="utf-8"></script> <!-- v6.5.0 -->
+    <title>Lab 8</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap');
+
+        h1, div {
+          background-color: rgba(255, 255, 0, 0.1);
+          font-family: 'Noto Serif JP', serif;
+          font-size: 24pt;
+          border: solid 1px black;
+          width: 90%;
+          margin: 5px auto;
+          padding: 10px;
+        }
+
+        div {
+          font-size: 12pt;
+        }
+
+        body {
+            background-color: rgba(255, 128, 255, 0.1);
+        }
+
+        video:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+
+        .path {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          animation: dash 7s linear forwards;
+        }
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+    </style>
+    <script src="https://d3js.org/d3.v6.min.js" charset="utf-8"></script> <!-- v6.5.0 -->
 </head>
 <body>
+  <h1>
+        lab08 漢字書寫 (鉛筆字) (毛筆字也OK!) Path Animation
+    </h1>
+    <div>
+      限定使用 D3.js，參考以下影片。
+           <ul>
+    		<li><a href="https://bl.ocks.org/basilesimon/f164aec5758d16d51d248e41af5428e4">Animate path in D3</a></li>
+    		<li><a href="https://codepen.io/MyXoToD/post/howto-self-drawing-svg-animation">"Self-Drawing" SVG</a></li>
+    		<li><a href="https://stackoverflow.com/questions/15275362/how-to-transition-a-path-in-d3-js">How to transition a path in d3.js</a></li>
+        <li><a href="https://css-tricks.com/svg-line-animation-works/">How SVG Line Animation Works</a></li>
+        <li><a href="http://blog.roachking.net/blog/2014/10/31/osolve-team-drawing-animation/">使用 SVG 將圖片做成動畫</a></li>
+        <li><a href="https://www.hesyifei.com/">何一非</a></li>
+    	</ul>
+    </div>
+    
+    <div>
+  		<video width="400" controls loop autoplay>
+  		  <source src="3.mp4" type="video/mp4">
+  		</video>
+    </div>
+
+    <div>展示區 (姓名)
+      <hr>
+      <svg id="svg1" height="350" width="300">
+      </svg>
+      <svg id="svg2" height="350" width="300">
+      </svg>
+      <svg id="svg3" height="350" width="300">
+      </svg>
+    </div>
+    
+<!--
+    <div>
+      Drag and Drop 展示區 (接收任何SVG)
+      <hr>
+    </div>
+-->
+
     <script type="text/javascript">
-      // Your beautiful D3 code will go here
+    var line = d3.line();
+    
+
+    var first = [
+                "M 71.521191,25.218786 C 71.521191,25.218786 34.932417,122.12371 11,131",
+                "m 57.738832,63.046964 c 0,0 -13.124857,141.344786 3.261168,153.953036",
+                "m 96,33 c 0,0 61.59679,-4.917526 58,-15 -3.59679,-10.0824742 14.87743,2.233677 14.87743,2.233677 0,0 -47.19587,12.43299 -67.87743,38.766323 -20.681558,26.333333 11,49 11,49",
+                "M 104,65 175,43 198,60 173.5693,109.37915 150,118",
+                "M 137.20733,0.2932417 133,112",
+                "M 110,84 157,65",
+                "m 120,101 44,-7",
+                "m 66,149 148,-40 13,13",
+                "m 150,118 c 0,0 31.29668,84.26346 5,106 -26.29668,21.73654 -22,-16 -22,-16",
+                "m 95,149 33,18"
+          ]
+
+    var middle = ["m 63,40 c 0,0 10,64 10,64 l 22,15",
+
+                  "M 73.280641,42.226804 154,27 c 0,0 27.19359,7.016037 27.19359,25.783505 0,18.767469 -34.01604,64.806415 -34.01604,64.806415 L 122.252,109.67239",
+                  "M 73,80 140,59",
+                  "M 82,112 158.32073,88.558992",
+                  "m 107,37 -4,71",
+                  "m 53,156 -13,14 2,17",
+                  "m 77,164 c 0,0 62.19359,66.71019 148,21",
+                  "M 225,185 167,144",
+                  "m 108,126 17,12",
+                  "m 185,101 c 0,0 32.94044,4.1386 37,24"
+]
+
+    var last = ["M 103,4 127.53036,12.902635 100,20",
+                "M 49,52 176.79496,32.256586 198.2016,38.12142",
+                "m 78,77 13.16838,-7.208477 c 0,0 84.45361,61.287517 87.97251,55.129437 3.5189,-6.15807 60.40779,-6.15807 59.23483,-3.22566",
+                "m 145,50 8.33562,3.956472 c 0,0 -54.83161,80.437568 -113.33562,89.043528",
+                "m 98,137 c 0,0 18.14204,18.57847 -31,77",
+                "m 156,133 -3,84 4.44101,16.12715 L 141,219"
+              ]
+
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+    async function first_N(){
+        for (var i = 0; i < first.length; i++) {
+            d3.select("#svg1")
+            .append('path')
+            .attr('class', 'path')
+            .attr('fill', "none")
+            .attr('stroke', "#699FBF")
+            .attr('stroke-width', "12")
+            .attr('stroke-linejoin',"miter")
+            .attr('stroke-linecap',"butt")
+            .attr('d', first[i]);
+            console.log(i);
+            await sleep(500);
+        }
+    }
+    first_N()
+
+    async function middle_N(){
+        for (var j = 0; j < middle.length; j++) {
+            d3.select("#svg2")
+            .append('path')
+            .attr('class', 'path')
+            .attr('fill', "none")
+            .attr('stroke', "#699FBF")
+            .attr('stroke-width', "12")
+            .attr('stroke-linejoin',"miter")
+            .attr('stroke-linecap',"butt")
+            .attr('d', middle[j]);
+            console.log(j);
+            await sleep(500);
+        }
+    }
+    middle_N()
+
+    async function last_N(){
+        for (var k = 0; k < last.length; k++) {
+            d3.select("#svg3")
+            .append('path')
+            .attr('class', 'path')
+            .attr('fill', "none")
+            .attr('stroke', "#699FBF")
+            .attr('stroke-width', "12")
+            .attr('stroke-linejoin',"miter")
+            .attr('stroke-linecap',"butt")
+            .attr('d', last[k]);
+            console.log(k);
+            await sleep(500);
+        }
+    }
+    last_N()
+
     </script>
-  </body>
-</html>
-  
+  </html>
