@@ -48,39 +48,41 @@
         </div>
 
         <div id="left">
-            <h1>
+            <h1 style="text-align: center;">
             資料可視化期末專題
             </h1>
             <h2 style="color: blue;">
-            組員: 108598080 傅思齊、109598079 黃彥鈞
+            組員:<br>
+            108598080 傅思齊<br>
+            109598079 黃彥鈞
             </h2>
             <div id="training-section">
 				<h2>
-					訓練資料集的部分 數量: 420
+					訓練資料集的部分 資料量: 1050
 				</h2>
-                <h2 align="center">
+                <h2 align="center" style="color:blue">
 				資料集介紹
 			    </h2>
                 <p>
-               此資料集是取自kaggle上的Default of Credit Card Clients Dataset,用來預測信用卡用戶的還款情形,會根據用戶的性別，婚姻狀況，教育程度，年紀,以及2005年4月到8月的還款狀態與帳單金額,去預測出9月的還款情形(0代表按時還款 1代表未按時還款)
+                此資料集是取自kaggle上的Rain in Australia，我們想要用來預測隔天是否會下雨。資料集裡記錄了從2007年起澳洲各地天氣站的氣象資料，包含降雨量、蒸發量、日照、不同時段的風速與風向、不同時段的溫度以及今明兩天是否降雨...等等不同資料。
                </p>
                
                 <p>
-               在資料處理的部分,我們總共取了600筆資料,其中0與1的數量比例是差不多的。而所選的特徵值共有14個。
+                我們取了裡面location為雪梨中的1500筆資料進行處理，其中1050筆為training data，450筆為test data。
                </p>
             </div>
-            <div id="testing-section">
-				<h1>
-					測試資料集的部分 數量: 180
+            <div id="testing-section" >
+				<h1 style="color:blue">
+					測試資料集的部分 數量: 450
 				</h1>
-                <h2 align="center">
+                <h2 align="center" style="color:blue">
 				實驗結果
 			    </h2>
                 <p>
                  在訓練資料集得到了100%的結果
                 </p>
                  <p>
-                 而透過刪除原本資料集一些不必要的屬性(ex. id),資料集的測試可以達到91%的準確率。
+                 
                 </p>
                 <br>
                 <br>
@@ -133,47 +135,47 @@
                 d3.select("#training-section")
                     .append("img")
                     .attr("src", './media/data.png')
-                    .attr("width",'500px')
+                    .attr("width",'800px')
                 ;
                 
                  d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/1.png')
+                    .attr("src", './media/1.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
                 
                  d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/2.png')
+                    .attr("src", './media/2.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
                 
                 d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/3.png')
+                    .attr("src", './media/3.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
                 
                 d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/4.png')
+                    .attr("src", './media/4.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
                 
                 d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/5.png')
+                    .attr("src", './media/5.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
                 
                 d3.select("#testing-section")
                     .append("img")
-                    .attr("src", './media/6.png')
+                    .attr("src", './media/6.jpg')
                     .attr("width",'300px')
                     .attr("hieght",'200px')
                 ;
